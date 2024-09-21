@@ -1,0 +1,15 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://gateway.openfaas:8080
+functions:
+  my-function:
+    lang: python3-flask
+    handler: ./my-function
+    image: swr.cn-east-2.myhuaweicloud.com/titanide/my-function:v0.0.6
+    environment:
+      mongo_host: mongodb.default.svc.cluster.local:27017
+      write_debug: true
+      combine_output: false
+    secrets:
+    - mongo-db-password
